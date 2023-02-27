@@ -57,3 +57,16 @@ OBS: There is no better or worse. Depends of each context
 7) Maturity in CD/CD, Tests and Environments
 8) Begin with "edges". (don't begin with separating the core)
 9) Strangler Pattern
+
+## 9 Features of microservices (By Martin Fowler):
+
+1) Components with services (substitutive, upgradable and deploy apart)
+2) Organization by Business Areas (think in business areas of the company, not think in the whole company. Each team has all the knowledge and is focused in one business)
+3) Products not projects (instead of treat the software as a project, treat it as a product, keeping the same team maintening it, even when the software "is done")
+4) Smart endpoints and dump pipes (use http or messaging system: rabbitM, kafka, etc. You send the message and receive the same message, differently as it was a few years ago with ESB that had convertions and used to generate accoplament)
+5) descentralized governance (avoid patterns, such as: technologies. with microservices, each service you can have a different technology. Each team will manage it. The service communications have to have defined contracts)
+6) descentralized data (each component has its own data. Sometimes we have some inconsistency, delay to update all the places)
+7) infrastructure automatized (all the services have to have his own tests, security, deploy process (ci/cd), how much cpu and memory available, etc.). A lot of work. We have to have this very mature before thinking in microservices.
+8) draw to fail (we have to think in resilicency. It has to think in the worst situation)
+9) evolutionary design (everytime that we can update or substitute the service without affect anything or others services)
+
