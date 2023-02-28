@@ -69,3 +69,22 @@ OBS: There is no better or worse. Depends of each context
 7) infrastructure automatized (all the services have to have his own tests, security, deploy process (ci/cd), how much cpu and memory available, etc.). A lot of work. We have to be very mature before thinking about microservices.
 8) draw to fail (we have to think in resiliency. It has to think in the worst situation)
 9) evolutionary design (everytime that we can update or substitute the service without affect anything or others services)
+
+## Resilience
+
+- In some moment, the system will fail. We have to mitigate the risk.
+- A group of strategies to intentionally adapt a system when a failure occurs.
+- Strategies:
+
+1) Protect and be protected: 
+- Auto preservation, guarantees when a lot of requests get into the system, all the system will answer in the same manner (same response time). So: 1 million requests respond to each request in 500ms. If 2 million requests come and the response time increases to 1s to all the requests, you have to block these beyond requests, guaranteeing quality.
+- A system cannot receive retries and retries if the system is down. 
+- Sometimes a slow system is worst than a system offline (it generates a chaining)
+
+2) Health Check: 
+- now only return 200 of the system, but also check the database and other dependencies
+- self healing: a system that is not health, that is a great opportunity to recover if there are no requests for them (do not stop the pod, just stop to send requests to it)
+
+3) Rate Limit:
+- 
+- 
