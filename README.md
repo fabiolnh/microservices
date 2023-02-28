@@ -82,9 +82,35 @@ OBS: There is no better or worse. Depends of each context
 - Sometimes a slow system is worst than a system offline (it generates a chaining)
 
 2) Health Check: 
-- now only return 200 of the system, but also check the database and other dependencies
-- self healing: a system that is not health, that is a great opportunity to recover if there are no requests for them (do not stop the pod, just stop to send requests to it)
+- do no return only the health check of the system, but also check the database and other dependencies
+- self healing: a system that is not health, there is a great opportunity to recover if there are no requests for them (do not stop the pod, just stop sending requests to it)
 
-3) Rate Limit:
-- 
-- 
+3) Rate Limiting:
+- Protect the system based on what the system was proposed to accept (ex: 100 requests per second)
+- custom protection per client (groups of preferences for rate limit per client)
+
+4) Circuit Breaker: 
+- protect the system to deny some requests
+- Opened Circuit: all the request deliver normally
+- Closed Circuit: requests are not delivered to the system.
+- Half Opened Circuit: a limited request is allowed to verify if the system has a condition to come back online.
+- The best way to implement is using Service Mesh (such as: Istio)
+
+5) API Gateway
+- One authentication for the rest of the system
+- Rate Limit, Health check (return an error if the /health is down), etc
+- avoid chaotic communications: when you have a request getting into a service A and this service send this request to a service B, change it and put the request directly into api gateway to the service B
+
+6) Service Mesh
+- Proxies: Service A sends the request to Proxy A and the proxy A sends the request to proxy B and the proxy B send the request to Service B
+- Control the whole system, the whole communication
+- protect the services with mTLS communication (secure)
+- Circuit Breaker, retry, timeout, fault injection, etc.
+- Instead of the developer implement it, give the responsibility to other person to control the whole system
+- Ex: Istio
+
+7) Async
+- send the message to a broker and the broker, the broker keeps the message and when the destination service consumes the message in its time.
+- Ex: Kafka, RabbitMQ, etc.
+- There is not data lost
+- The server can process the information in its time.
