@@ -114,3 +114,38 @@ OBS: There is no better or worse. Depends of each context
 - Ex: Kafka, RabbitMQ, etc.
 - There is not data lost
 - The server can process the information in its time.
+
+8) Retry
+- Without Backoff: retry in the Same time every time
+- Exponential Backoff: the time will increase each time in fails (with less requests)
+- Exponential Backoff with Jitter: the time will increase each time in fails (with less requests), however, the time will change a little bit with a random number, this way all the services will do requests in a different time
+
+9) Delivery Guarantee
+- In Kafka, there are:
+  * Ack 0 (None): No Confirmation (high performance)
+  * Ack 1 (Leader): Confirmation that the Leader has get the message
+  * Ack -1 (ALL): Confirmation that the Leader and the Followers got the message (less performance) 
+  
+10) Complex Situations:
+  * What happens if a message broker goes down? 
+  * Will it lose data? 
+  * Will the whole system go offline?
+  * How to guarantee resiliency?
+- Transactional Outbox: Save the message in a Database before sending it to kafka, and, when sent and the kafka guarantee that it was received, delete it.
+
+11) Receiving Guarantee (Resiliency)
+- Never work with auto ack
+  * Auto Ack: use it false and manual commit (first processed the message and just later we send a message to the broker that it can be deleted)
+- Prefetch aligned with volumetry: receive the message as a batch, not one by one. However, it is good to do a stress test with volumetry, to see how much the system can support 
+
+12) Idempotence and Fallback Policies
+- Idempotence: how we can handle a duplicity message situation. We have to think in this situation. (ex: id)
+- Fallback Policy: control the possible of wrong situations
+
+13) Observability
+- APM (Application Performance Monitor)
+- Distributed Tracing
+- Custom Metrics (system metrics and business metrics)
+- Personalized Spans (each part of the system we can see details)
+- Open Telemetry
+
