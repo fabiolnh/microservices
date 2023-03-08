@@ -158,12 +158,24 @@ OBS: There is no better or worse. Depends of each context
   - There is a mediator that controls all the flux of each communication (that can be async or sync) get success or fail, if fail, it generates a fallback plan (what happens when a failed communication occurs. As an example: undo all the things of past services did)
   - It is more complex than Choreography
 
-### Strategy of Choreography:
+## Strategy of Choreography:
 - A way to group the micro services into contexts
 - Especially if the communication is sync
 - Create a "Micro" API Gateway to each Context. The communication occurs between api gateways for each context (It is not a service mesh)
 - Ex: Microservice A and Microservice B belong to Context X - API Gateway X (/payment). 
 - The other services (belonging to other contexts, other api gateways) that call these two services go to the API Gateway first, and the API Gateway knows where to redirect.
 - This way we can organize better the Choreography
+
+## Patterns
+
+1) API Composition: Possibilities:
+  a) Service Composer: Instead of a Front-end (or other service) calls Service A and Service B to generate a report, as an example, it can call a service C, and the Service C calls Service A and B
+  b) API Gateway: The same example of above, but instead use a Service C, you can use an API Gateway
+* Disadvantages:
+  - You can have a unavailable problem
+  - Data Consistency
+  - High Complexity (create a service to read other services)
+  - High Latency
+  - Sync Way
 
 
