@@ -169,8 +169,8 @@ OBS: There is no better or worse. Depends of each context
 ## Patterns
 
 1) API Composition: Possibilities:
-  a) Service Composer: Instead of a Front-end (or other service) calls Service A and Service B to generate a report, as an example, it can call a service C, and the Service C calls Service A and B
-  b) API Gateway: The same example of above, but instead use a Service C, you can use an API Gateway
+  - a) Service Composer: Instead of a Front-end (or other service) calls Service A and Service B to generate a report, as an example, it can call a service C, and the Service C calls Service A and B
+  - b) API Gateway: The same example of above, but instead use a Service C, you can use an API Gateway
 * Disadvantages:
   - You can have a unavailable problem
   - Data Consistency
