@@ -149,3 +149,21 @@ OBS: There is no better or worse. Depends of each context
 - Personalized Spans (each part of the system we can see details)
 - Open Telemetry
 
+
+## Choreography VS Orchestration
+1) Choreography: 
+  - Death Star: When a lot of microservice are communicating with each other generating a complex requests communication
+  - ![](https://1.bp.blogspot.com/-pFb1j0gLUXw/W5_GpjLMdyI/AAAAAAAADVw/lo_L8SRLWlw3VDmlfQPJx2fk176Vv-n5QCLcBGAs/s1600/004_Death%2BStart%2BPitfall.png)
+2) Orchestration: Guarantee an order between calls. Ex: a -> B -> C -> D
+  - There is a mediator that controls all the flux of each communication (that can be async or sync) get success or fail, if fail, it generates a fallback plan (what happens when a failed communication occurs. As an example: undo all the things of past services did)
+  - It is more complex than Choreography
+
+### Strategy of Choreography:
+- A way to group the micro services into contexts
+- Especially if the communication is sync
+- Create a "Micro" API Gateway to each Context. The communication occurs between api gateways for each context (It is not a service mesh)
+- Ex: Microservice A and Microservice B belong to Context X - API Gateway X (/payment). 
+- The other services (belonging to other contexts, other api gateways) that call these two services go to the API Gateway first, and the API Gateway knows where to redirect.
+- This way we can organize better the Choreography
+
+
