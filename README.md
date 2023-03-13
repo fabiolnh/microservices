@@ -178,4 +178,37 @@ OBS: There is no better or worse. Depends of each context
   - High Latency
   - Sync Way
 
+2) Decompose By Business Capability
+  - Think in DDD (Think in business contexts)
+  - Ex: Decompose a monolithic system into microservices. Ex: each module will be a business area (microservice)
 
+3) Strangler Application
+  - Slowly (a long time), we decrease the monolithic, doing:
+    * Each feature will be a microservice (new ones)
+    * little parts of the monolithic system will be a microservice
+  - Attention Points:
+    * We have to think in the communication with the monolithic and the microservices while it is being decrease
+    * The company has to have the devops culture
+    * At the beginning, we can have a shared database (evaluate)
+    * Tip: Use APM (Ex: New Relic / Data Dog): It will show all the queries that the system is doing
+    * Each microservice will have its own APM
+    * What metrics do you want? what happens differently the expected will have to have alarm. 
+
+4) ACL (Anti Corruption Layer)
+  - Create a microservice in the middle, between the microservice A and the microservices B,C,D, doing a "proxy/interface" to decide to which microservice it will communicate, this way we do not corrupt the microservice A, we do not modify it when we need to communicate to B, C or D
+  - there are people that treat the "ACL" inside the application, but it is not the right way in this context.
+  
+5) API Gateway
+- A very important pattern. Can be: Stateless and Stateful. Ex: Kong
+  * Redirect to certain microservice
+  * Rate Limit
+  * Can modify the message
+  * Authentication
+  * Etc.
+  
+6) BFF (Backend for Frontend)
+  - To each different client, we have a different payload (Ex: a BFF for mobile client, a BFF for TV client, a BFF for Desktop clients)
+  - We create a microservice for that
+  * There is a solution that can substitute the BFF: GraphQL (in GraphQL, who dominates the backend is the client. So, this way, the client can request only the information it needs). Sometimes it is not so simple to work with GraphQL
+  
+7) 
