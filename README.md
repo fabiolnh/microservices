@@ -211,4 +211,18 @@ OBS: There is no better or worse. Depends of each context
   - We create a microservice for that
   * There is a solution that can substitute the BFF: GraphQL (in GraphQL, who dominates the backend is the client. So, this way, the client can request only the information it needs). Sometimes it is not so simple to work with GraphQL
   
-7) 
+7) Database
+  - There are some advantages in using the same database for all the microservices, however there is some big issue:
+    * If a MS uses a lot of these databases, the performance of other MS will get down.
+    * If a MS alters the schema, the other MS will break.
+  - If you are migrating a monolithic into microservices, use the same database initially after creating the microservices. Create another Database parallelly and use both, until you turn down the database from monolithic.
+  - The guideline: use one database per microservice.
+
+8) Reports from different databases
+  - When each microservice has its own database, so, how can we consolidate a report between all the databases?
+    * 1: Generate a report in background where the MS will consolidate the information
+    * 2: Create a microservice as a report service and this MS will access the other microservices to generate the report
+    * 3: Work with projection table:
+      - Each time that the microservice updates something in its database, it will update the projection table (some columns in another database that consolidate all the reports that are needed). Each column can be filled with each microservice, generating the whole row. You can work with events. Create a topic and fire the event to it and some extra microservice can get the event and update the projection table
+
+9) 
