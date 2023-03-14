@@ -225,4 +225,11 @@ OBS: There is no better or worse. Depends of each context
     * 3: Work with projection table:
       - Each time that the microservice updates something in its database, it will update the projection table (some columns in another database that consolidate all the reports that are needed). Each column can be filled with each microservice, generating the whole row. You can work with events. Create a topic and fire the event to it and some extra microservice can get the event and update the projection table
 
-9) 
+9) Transactional Outbox
+  - It is a pattern. 
+  - If you are not working with events, you need to prevent the data loss:
+    * Create a database (not the same that the MS is using. Ex: RDMS, DynamoDB, Redis), before the transfer, record the data transfer into the database and after the communication successes, delete the item from the database. You have to create consumer inside this MS to read this table from each to each time
+      - Good Option: Create a SDK in the company that all the requests do a retry or record the transaction into buffer
+  - If you are working with events:
+    * You can do the same. If the broker is offline, record the data into database
+
