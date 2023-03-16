@@ -233,3 +233,38 @@ OBS: There is no better or worse. Depends of each context
   - If you are working with events:
     * You can do the same. If the broker is offline, record the data into database
 
+10) Secret Manager
+  - Too many microservices. What should we do to manage the database secrets of all of them? 
+  - Keep the passwords of the database microservices into a secret manager (by the way, this is the name of the AWS Service)
+  - Rotate periodically and automatically these secrets (there is an option in Secret Manager)
+  - The "Secret Manager" manages the secret. It changes and updates the DataBase Secret automatically on rotation (through Lambda)
+  - Do not use these secrets in env variables. The microservice gets the secret from the Secret Manager
+  - This way you concentrate the passwords
+  
+11) Logs Standardization
+  - Architectural: Centralize the logs of all the pods into one local (Ex: ElasticSearch)
+  - All the logs of all microservices have to have standardization
+  - Create a SDK for it to resolve this situation and all the microservices use this SDK
+  - Take care with stacktrace on the log because it generates too much lines, and the elasticsearch (or other tool) will identify it as it was a lot of logs (parse this information and generate only one line with all the stack trace) (in elasticsearch, with "logstash" tool you can treat it. Or use "Filebeat'' tool that has a lot of logs standardization)
+
+12) Open Telemetry (OTel)
+  - It is a project that was joined from 2 other market projects that is helping to standardize all the application data generating
+  - You are not tied to a single supplier. You create a collector and all the microservices send the data (tracing, metrics, etc) to this collector
+  - The data is sent through a SDK, and this SDK is available to almost all programming languages
+  - For distributed tracing, sometimes you are implementing New Reliac, and then you change to DataDog and then you change to Elastic.
+
+13) Service Template
+  How to work with:
+  - Implementation Pattern
+  - Logs
+  - Outbox
+  - Password Management
+  - Way to talk with events
+  - Observability
+  - CQRS
+  - Multiple Databases
+  - Audit
+  - Jobs
+  * The company has to create a SDK for all of this. Today there are platform/sunstein teams to maintain it. (they help other developers to have standardization)
+  * There is a PaaS called "Fury", that standardize it (it generates the repository, creates the service, health check, etc)
+
