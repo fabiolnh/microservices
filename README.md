@@ -254,7 +254,7 @@ OBS: There is no better or worse. Depends of each context
   - For distributed tracing, sometimes you are implementing New Reliac, and then you change to DataDog and then you change to Elastic.
 
 13) Service Template
-  How to work with:
+  * How to work with:
     - Implementation Pattern
     - Logs
     - Outbox
