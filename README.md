@@ -255,16 +255,16 @@ OBS: There is no better or worse. Depends of each context
 
 13) Service Template
   How to work with:
-  - Implementation Pattern
-  - Logs
-  - Outbox
-  - Password Management
-  - Way to talk with events
-  - Observability
-  - CQRS
-  - Multiple Databases
-  - Audit
-  - Jobs
+    - Implementation Pattern
+    - Logs
+    - Outbox
+    - Password Management
+    - Way to talk with events
+    - Observability
+    - CQRS
+    - Multiple Databases
+    - Audit
+    - Jobs
   * The company has to create a SDK for all of this. Today there are platform/sunstein teams to maintain it. (they help other developers to have standardization)
   * There is a PaaS called "Fury", that standardize it (it generates the repository, creates the service, health check, etc)
 
