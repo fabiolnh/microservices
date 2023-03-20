@@ -268,3 +268,15 @@ OBS: There is no better or worse. Depends of each context
   * The company has to create a SDK for all of this. Today there are platform/sunstein teams to maintain it. (they help other developers to have standardization)
   * There is a PaaS called "Fury", that standardize it (it generates the repository, creates the service, health check, etc)
 
+## C4 Model
+  - A Way to document the architecture
+  - There are 4 levels: (1: Contents, 2: Containers, 3: Components, 4: Code)
+  - "Contents" and "Containers" are the most important parts. The diagrams of "Components" and "Code" depend of each company if they want to do or not.
+  - The documentation has to be always updated.
+    1) Contents: Who talks with the software. The context where it is
+    2) Containers: The systems that the software has and the interactions between them.
+    3) Components: it is a "zoom" inside the container. You can see, as an example, the class diagram
+    4) Code
+  - https://c4model.com
+  - Templates for defining C4 model to microservices: https://github.com/plantuml-stdlib/C4-PlantUML
+  - There is a plugin in VSCode (called PlantUML) that you can use to see the diagram after coding. You need to install Java (www.java.com) and (https://graphviz.gitlab.io/download/) to run it.
